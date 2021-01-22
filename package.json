@@ -5,13 +5,12 @@
   "repository": "https://github.com/DenisMedeirosSDK/Nebulosa-Backend.git",
   "author": "denismedeirossdk <contato.denismedeiros@hotmail.com>",
   "license": "MIT",
-  "scripts": {
-    "commit": "git-cz"
-  },
+  "scripts": {},
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
   "lint-staged": {
