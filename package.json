@@ -1,0 +1,8 @@
+{
+  "name": "Nebulosa-Backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/DenisMedeirosSDK/Nebulosa-Backend.git",
+  "author": "denismedeirossdk <contato.denismedeiros@hotmail.com>",
+  "license": "MIT"
+}
