@@ -17,12 +17,15 @@
   ],
   "rules": {
     "import/no-duplicates": "off",
+    "space-before-function-paren": "off",
+    "camelcase": "off",
     "import-helpers/order-imports": [
       "warn",
       {
         "newlinesBetween": "always",
         "groups": [
           "module",
+          "/@controllers/",
           [
             "parent",
             "sibling",

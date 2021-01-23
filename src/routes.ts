@@ -1,9 +1,11 @@
 import { Router } from 'express'
 
+import ServiceController from '@controllers/serviceController'
+
+const serviceController = new ServiceController()
+
 const routes = Router()
 
-routes.get('/', () => {
-  console.log('First route')
-})
+routes.post('/services', serviceController.create)
 
 export default routes
