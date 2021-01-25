@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import db from 'src/database/connection'
+
+import db from '../database/connection'
 
 export default class ConnectionsController {
   async index(request: Request, response: Response) {
