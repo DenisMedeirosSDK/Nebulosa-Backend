@@ -10,6 +10,37 @@ interface ScheduleItem {
 }
 
 export default class ServiceController {
+  async index(request: Request, response: Response) {
+    const filters = request.query
+
+    const skill = filters.skill as string
+    const week_day = filters.week_day as string
+    const time = filters.time as string
+
+    if (!filters.week_day || !filters.skill || !filters.time) {
+      return response.status(400).json({
+        error: 'Missing filters to search services'
+      })
+    }
+
+    const timeInMinutes = convertHourToMinutes(time)
+
+    const service = await db('services')
+      .whereExists(function () {
+        this.select('service_schedule.*')
+          .from('service_schedule')
+          .whereRaw('`service_schedule`.`service_id` = `services`.`id`')
+          .whereRaw('`service_schedule`.`week_day` = ??', [Number(week_day)])
+          .whereRaw('`service_schedule`.`from` <= ??', [timeInMinutes])
+          .whereRaw('`service_schedule`.`to` > ??', [timeInMinutes])
+      })
+      .where('services.skill', '=', skill)
+      .join('users', 'services.user_id', '=', 'users.id')
+      .select(['services.*', 'users.*'])
+
+    return response.json(service)
+  }
+
   async create(request: Request, response: Response) {
     const { name, avatar, bio, whatsapp, skill, cost, schedule } = request.body
 
