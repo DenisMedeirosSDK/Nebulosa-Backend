@@ -8,7 +8,7 @@ export async function up(knex: knex) {
     table.string('whatsapp').notNullable()
     table.string('bio').notNullable()
 
-    table.timestamp('created_at').defaultTo('now()').notNullable()
+    table.timestamp('created_at').defaultTo(knex.raw('CURRENT_TIMESTAMP')).notNullable()
   })
 }
 export async function down(knex: knex) {
