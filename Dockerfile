@@ -1,8 +1,6 @@
 FROM node:latest
 
-USER node
-
-WORKDIR /home/node/app
+WORKDIR /usr/app
 
 COPY package.json ./
 
