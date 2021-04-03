@@ -6,11 +6,11 @@
   "author": "denismedeirossdk <contato.denismedeiros@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/server.js",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
-    "test": "NODE_ENV=test jest --detectOpenHandles"
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
   "husky": {
     "hooks": {
@@ -30,13 +30,10 @@
     ]
   },
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^8.5.1",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.32",
-    "uuid": "^8.3.2"
+    "knex": "^0.21.16",
+    "sqlite3": "5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

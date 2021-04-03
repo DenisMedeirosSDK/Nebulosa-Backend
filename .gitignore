@@ -1,6 +1,3 @@
 node_modules
 dist
 *.sqlite
-
-tmp/uploads/*
-!tmp/uploads/.gitkeep
