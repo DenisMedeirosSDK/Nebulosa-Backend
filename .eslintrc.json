@@ -1,7 +1,8 @@
 {
   "env": {
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": [
     "standard"
@@ -18,14 +19,17 @@
   "rules": {
     "import/no-duplicates": "off",
     "space-before-function-paren": "off",
-    "camelcase": "off",
     "import-helpers/order-imports": [
       "warn",
       {
         "newlinesBetween": "always",
         "groups": [
           "module",
-          "/@controllers/",
+          "/@shared/",
+          "/@config/",
+          "/@errors/",
+          "/@utils/",
+          "/@modules/",
           [
             "parent",
             "sibling",
@@ -36,6 +40,18 @@
           "order": "asc",
           "ignoreCase": true
         }
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "prefix": [
+          "I"
+        ],
+        "format": [
+          "PascalCase"
+        ]
       }
     ]
   },
