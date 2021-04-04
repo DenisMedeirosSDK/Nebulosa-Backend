@@ -21,7 +21,7 @@ class User {
   @Column()
   password: string
 
-  @Column({ default: false })
+  @Column()
   isProvider: boolean
 
   @CreateDateColumn()
