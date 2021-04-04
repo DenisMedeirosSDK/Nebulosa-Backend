@@ -12,7 +12,6 @@ module.exports = {
   ],
   plugins: [
     ['module-resolver', {
-      root: ['./src'],
       alias: {
         '@shared/': './src/shared',
         '@modules/': './src/modules',
