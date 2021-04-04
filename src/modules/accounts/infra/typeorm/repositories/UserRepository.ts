@@ -12,6 +12,12 @@ class UserRepository implements IUserRepository {
     this.repository = getRepository(User)
   }
 
+  async findById(id: string): Promise<User> {
+    const user = this.repository.findOne(id)
+
+    return user
+  }
+
   async create({ id, name, email, password }: ICreateUserDTO): Promise<User> {
     const user = this.repository.create({
       id, name, email, password
