@@ -1,36 +1,38 @@
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 import { v4 as uuidV4 } from 'uuid'
 
+@Entity('users')
 class User {
+  @PrimaryColumn()
   id?: string
 
+  @Column()
   name: string
 
+  @Column()
   avatar?: string
 
+  @Column()
   phone?: string
 
+  @Column()
   email: string
 
+  @Column()
   password: string
 
+  @Column({ default: false })
   isProvider: boolean
 
-  createdAt: number
+  @CreateDateColumn()
+  createdAt: Date
 
-  updatedAt: number
+  @UpdateDateColumn()
+  updatedAt: Date
 
   constructor() {
     if (!this.id) {
       this.id = uuidV4()
-    }
-    if (!this.isProvider) {
-      this.isProvider = false
-    }
-    if (this.createdAt) {
-      this.createdAt = Date.now()
-    }
-    if (this.updatedAt) {
-      this.updatedAt = Date.now()
     }
   }
 }
