@@ -12,10 +12,15 @@ module.exports = {
   ],
   plugins: [
     ['module-resolver', {
+      root: ['./src'],
       alias: {
-        '@controllers': './src/controllers'
+        '@shared/': './src/shared',
+        '@modules/': './src/modules',
+        '@config/': './src/config',
+        '@errors/': './src/errors',
+        '@utils/': './src/utils',
       }
-    }]
+    }],
   ],
   ignore: [
     '**/*.spec.ts'

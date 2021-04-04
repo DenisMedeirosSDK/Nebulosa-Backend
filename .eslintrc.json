@@ -19,17 +19,14 @@
   "rules": {
     "import/no-duplicates": "off",
     "space-before-function-paren": "off",
+    "no-useless-constructor": "off",
     "import-helpers/order-imports": [
       "warn",
       {
         "newlinesBetween": "always",
         "groups": [
           "module",
-          "/@shared/",
-          "/@config/",
-          "/@errors/",
-          "/@utils/",
-          "/@modules/",
+          "/^@/",
           [
             "parent",
             "sibling",
