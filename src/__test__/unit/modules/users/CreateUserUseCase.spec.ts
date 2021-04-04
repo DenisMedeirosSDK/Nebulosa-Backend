@@ -1,16 +1,16 @@
 import { InMemoryUserRepository } from '@modules/accounts/repositories/inMemory/InMemoryUserRepository'
-import { CreateUseUserCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase'
+import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase'
 
 let InMemoryUseRepository: InMemoryUserRepository
-let createUseUserCase: CreateUseUserCase
+let createUserUseCase: CreateUserUseCase
 
 describe('Create user', () => {
   beforeEach(() => {
     InMemoryUseRepository = new InMemoryUserRepository()
-    createUseUserCase = new CreateUseUserCase(InMemoryUseRepository)
+    createUserUseCase = new CreateUserUseCase(InMemoryUseRepository)
   })
   it('should be able create a new user', async () => {
-    const user = await createUseUserCase.execute({
+    const user = await createUserUseCase.execute({
       name: 'John Doe',
       email: 'johndoe@email.com',
       password: '123456'
@@ -19,13 +19,13 @@ describe('Create user', () => {
   })
   it('should not be able create a new user with email exists', async () => {
     expect(async () => {
-      await createUseUserCase.execute({
+      await createUserUseCase.execute({
         name: 'John Doe',
         email: 'johndoe@email.com',
         password: '123456'
       })
 
-      await createUseUserCase.execute({
+      await createUserUseCase.execute({
         name: 'John Doe',
         email: 'johndoe@email.com',
         password: '123456'

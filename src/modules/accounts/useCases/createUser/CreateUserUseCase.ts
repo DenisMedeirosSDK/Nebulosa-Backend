@@ -6,7 +6,7 @@ import { User } from '@modules/accounts/infra/typeorm/entities/User'
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
 
 @injectable()
-class CreateUseUserCase {
+class CreateUserUseCase {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository
@@ -31,4 +31,4 @@ class CreateUseUserCase {
   }
 }
 
-export { CreateUseUserCase }
+export { CreateUserUseCase }
