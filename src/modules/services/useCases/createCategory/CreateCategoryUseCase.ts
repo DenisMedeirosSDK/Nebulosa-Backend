@@ -1,9 +1,13 @@
+import { inject, injectable } from 'tsyringe'
+
 import { Category } from '@modules/services/infra/typeorm/entities/Category'
 import { ICategoryRepository, ICreateCategoryDTO } from '@modules/services/repositories/ICategoryRepository'
 import { AppError } from '@shared/errors/AppError'
 
+@injectable()
 class CreateCategoryUseCase {
   constructor(
+    @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository
   ) { }
 
