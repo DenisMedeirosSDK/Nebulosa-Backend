@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe'
+
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
 import { IStorageProvider } from '@shared/container/providers/StorageProvider/IStorageProvider'
 
@@ -6,9 +8,12 @@ interface IRequest {
   avatarFile: string
 }
 
+@injectable()
 class UpdateUserAvatarUseCase {
   constructor(
+    @inject('UserRepository')
     private userRepository: IUserRepository,
+    @inject('StorageProvider')
     private storageProvider: IStorageProvider
   ) { }
 
