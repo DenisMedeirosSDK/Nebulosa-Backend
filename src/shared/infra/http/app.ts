@@ -1,18 +1,21 @@
 import 'reflect-metadata'
 import cors from 'cors'
 import express, { Request, Response, NextFunction } from 'express'
-
 import 'express-async-errors'
+
+import '@shared/container'
+import upload from '@config/upload'
 import { AppError } from '@shared/errors/AppError'
 import createConnection from '@shared/infra/typeorm'
 
-import '@shared/container'
 import routes from './routes'
 
 createConnection()
 
 const app = express()
 app.use(express.json())
+
+app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
 
 app.use(cors())
 
