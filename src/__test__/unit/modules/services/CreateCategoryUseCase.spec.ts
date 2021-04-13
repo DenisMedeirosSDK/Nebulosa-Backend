@@ -18,7 +18,7 @@ describe('Category useCase', () => {
 
     expect(category).toHaveProperty('id')
   })
-  it('should be able an create new category', async () => {
+  it('should not be able and create new category with equal name', async () => {
     expect(async () => {
       await createCategoryUseCase.execute({
         name: 'HAND-NAILS',
