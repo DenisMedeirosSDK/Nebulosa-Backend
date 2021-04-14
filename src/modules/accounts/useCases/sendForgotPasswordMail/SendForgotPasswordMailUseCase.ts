@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+import { inject, injectable } from 'tsyringe'
 import { v4 as uuidV4 } from 'uuid'
 
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
@@ -7,11 +8,16 @@ import { IDateProvider } from '@shared/container/providers/DateProvider/IDatePro
 import { IMailProvider } from '@shared/container/providers/MailProvider/IMailProvider'
 import { AppError } from '@shared/errors/AppError'
 
+@injectable()
 class SendForgotPasswordMailUseCase {
   constructor(
+    @inject('UserRepository')
     private userRepository: IUserRepository,
+    @inject('UserTokenRepository')
     private userTokenRepository: IUserTokenRepository,
+    @inject('DateProvider')
     private dateProvider: IDateProvider,
+    @inject('MailProvider')
     private mailProvider: IMailProvider
   ) { }
 
