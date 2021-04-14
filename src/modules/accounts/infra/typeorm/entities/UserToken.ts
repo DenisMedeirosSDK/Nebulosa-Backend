@@ -1,29 +1,32 @@
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
 import { v4 as uuidV4 } from 'uuid'
 
 import { User } from './User'
 
+@Entity('userToken')
 class UserToken {
+  @PrimaryColumn()
   id?: string
 
+  @Column()
   refreshToken: string
 
+  @Column()
   userId: string
 
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'userId' })
   user: User
 
-  expiresDate: number
+  @Column()
+  expiresDate: Date
 
-  createdAt: number
+  @CreateDateColumn()
+  createdAt: Date
 
   constructor() {
     if (!this.id) {
       this.id = uuidV4()
-    }
-    if (!this.expiresDate) {
-      this.expiresDate = Date.now()
-    }
-    if (!this.createdAt) {
-      this.createdAt = Date.now()
     }
   }
 }

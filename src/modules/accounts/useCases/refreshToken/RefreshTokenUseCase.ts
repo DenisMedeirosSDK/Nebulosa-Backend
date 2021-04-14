@@ -1,4 +1,5 @@
 import { sign, verify } from 'jsonwebtoken'
+import { inject, injectable } from 'tsyringe'
 
 import auth from '@config/auth'
 import { IUserTokenRepository } from '@modules/accounts/repositories/IUserTokenRepository'
@@ -15,9 +16,12 @@ interface ITokenResponse {
   refreshToken: string
 }
 
+@injectable()
 class RefreshTokenUseCase {
   constructor(
+    @inject('UserTokenRepository')
     private userTokenRepository: IUserTokenRepository,
+    @inject('DateProvider')
     private dateProvider: IDateProvider
   ) { }
 
