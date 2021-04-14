@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt'
+import { inject, injectable } from 'tsyringe'
 
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
 import { IUserTokenRepository } from '@modules/accounts/repositories/IUserTokenRepository'
@@ -10,10 +11,14 @@ interface IRequest {
   password: string
 }
 
+@injectable()
 class ResetPasswordUserUseCase {
   constructor(
+    @inject('UserTokenRepository')
     private userTokenRepository: IUserTokenRepository,
+    @inject('DateProvider')
     private dateProvider: IDateProvider,
+    @inject('UserRepository')
     private userRepository: IUserRepository
   ) { }
 
