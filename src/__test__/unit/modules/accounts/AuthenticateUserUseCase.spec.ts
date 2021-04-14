@@ -12,7 +12,7 @@ let authenticateUserUseCase: AuthenticateUserUseCase
 let inMemoryUserTokenRepository: InMemoryUserTokenRepository
 let dateDaysJSProvider: DateDaysJSProvider
 
-describe('Authenticate UseCases', () => {
+describe('Authenticate UseCase', () => {
   beforeEach(() => {
     inMemoryUseRepository = new InMemoryUserRepository()
     inMemoryUserTokenRepository = new InMemoryUserTokenRepository()
@@ -35,8 +35,8 @@ describe('Authenticate UseCases', () => {
 
     expect(token).toHaveProperty('token')
   })
-  it('should not be able to authenticate an nonexistent user', () => {
-    expect(async () => {
+  it('should not be able to authenticate an nonexistent user', async () => {
+    await expect(async () => {
       await authenticateUserUseCase.execute({
         email: 'nonexist@email.com',
         password: 'non-existPassword'
@@ -44,18 +44,34 @@ describe('Authenticate UseCases', () => {
     }).rejects.toBeInstanceOf(AppError)
   })
   it('should not be able to authenticate with incorrect password', async () => {
-    expect(async () => {
-      const user: ICreateUserDTO = {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
-        password: '123456'
-      }
+    const user: ICreateUserDTO = {
+      name: 'John Doe',
+      email: 'johndoe@mail.com',
+      password: '123456'
+    }
 
-      await createUserUseCase.execute(user)
+    await createUserUseCase.execute(user)
 
+    await expect(async () => {
       await authenticateUserUseCase.execute({
         email: user.email,
-        password: 'ErrorPassword'
+        password: 'incorrect-password'
+      })
+    }).rejects.toBeInstanceOf(AppError)
+  })
+  it('should not be able to authenticate with incorrect email', async () => {
+    const user: ICreateUserDTO = {
+      name: 'John Doe',
+      email: 'johndoe@mail.com',
+      password: '123456'
+    }
+
+    await createUserUseCase.execute(user)
+
+    await expect(async () => {
+      await authenticateUserUseCase.execute({
+        email: 'incorrect-email',
+        password: user.password
       })
     }).rejects.toBeInstanceOf(AppError)
   })
