@@ -3,7 +3,7 @@ import { UserToken } from '@modules/accounts/infra/typeorm/entities/UserToken'
 
 import { IUserTokenRepository } from '../IUserTokenRepository'
 
-class inMemoryUserTokenRepository implements IUserTokenRepository {
+class InMemoryUserTokenRepository implements IUserTokenRepository {
   private usersTokens: UserToken[] = []
   async create({ userId, expiresDate, refreshToken }: ICreateUserTokenDTO): Promise<UserToken> {
     const userToken = new UserToken()
@@ -37,4 +37,4 @@ class inMemoryUserTokenRepository implements IUserTokenRepository {
   }
 }
 
-export { inMemoryUserTokenRepository }
+export { InMemoryUserTokenRepository }
