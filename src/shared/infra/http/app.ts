@@ -1,20 +1,25 @@
 import 'reflect-metadata'
 import 'dotenv/config'
-import cors from 'cors'
-import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
 
-import '@shared/container'
+import cors from 'cors'
+import express, { Request, Response, NextFunction } from 'express'
+import swaggerUI from 'swagger-ui-express'
+
 import upload from '@config/upload'
+import '@shared/container'
 import { AppError } from '@shared/errors/AppError'
 import createConnection from '@shared/infra/typeorm'
 
 import routes from './routes'
+import swaggerDocument from './swagger.json'
 
 createConnection()
 
 const app = express()
 app.use(express.json())
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
 
