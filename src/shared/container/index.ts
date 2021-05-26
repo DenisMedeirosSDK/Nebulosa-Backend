@@ -7,7 +7,9 @@ import { UserTokenRepository } from '@modules/accounts/infra/typeorm/repositorie
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
 import { IUserTokenRepository } from '@modules/accounts/repositories/IUserTokenRepository'
 import { CategoryRepository } from '@modules/services/infra/typeorm/repositories/CategoryRepository'
+import { ServiceRepository } from '@modules/services/infra/typeorm/repositories/ServiceRepository'
 import { ICategoryRepository } from '@modules/services/repositories/ICategoryRepository'
+import { IServiceRepository } from '@modules/services/repositories/IServiceRepository'
 
 container.registerSingleton<IUserRepository>(
   'UserRepository',
@@ -22,4 +24,9 @@ container.registerSingleton<ICategoryRepository>(
 container.registerSingleton<IUserTokenRepository>(
   'UserTokenRepository',
   UserTokenRepository
+)
+
+container.registerSingleton<IServiceRepository>(
+  'ServiceRepository',
+  ServiceRepository
 )
