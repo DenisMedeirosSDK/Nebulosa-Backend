@@ -1,11 +1,29 @@
-import { Connection, createConnection, getConnectionOptions } from 'typeorm'
+import { createConnections } from 'typeorm'
 
-export default async (host = 'databaseNebulosa'): Promise<Connection> => {
-  const defaultOptions = await getConnectionOptions()
-  return createConnection(
-    Object.assign(defaultOptions, {
-      host: process.env.NODE_ENV === 'test' ? 'localhost' : host,
-      database: process.env.NODE_ENV === 'test' ? 'nebulosaTest' : defaultOptions.database
-    })
-  )
+export default async () => {
+  return createConnections([
+    {
+      name: 'default',
+      type: 'postgres',
+      host: 'localhost',
+      database: 'nebulosa',
+      username: 'docker',
+      password: 'nebulosa',
+      migrations: [
+        './src/shared/infra/typeorm/migrations/*.ts'
+      ],
+      entities: ['./src/modules/**/entities/*.ts'],
+      cli: {
+        migrationsDir: './src/shared/infra/typeorm/migrations'
+      }
+    },
+    {
+      name: 'mongo',
+      type: 'mongodb',
+      host: 'localhost',
+      port: 27017,
+      database: 'nebulosa',
+      entities: ['./src/modules/**/schemas/*.ts']
+    }
+  ])
 }
