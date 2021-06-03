@@ -9,9 +9,10 @@ class CreateServiceUseCase {
     private serviceRepository: IServiceRepository
   ) { }
 
-  async execute({ name, description }: IServiceDTO) {
+  async execute({ name, description, price, available, duration, categoryId, userId }: IServiceDTO) {
+    const convertMinToSec = (duration * 60)
     const service = this.serviceRepository.create({
-      name, description
+      name, description, price, available, duration: convertMinToSec, categoryId, userId
     })
 
     return service

@@ -1,21 +1,21 @@
-import { getMongoRepository, MongoRepository } from 'typeorm'
+import { getRepository, Repository } from 'typeorm'
 
 import { IServiceDTO, IServiceRepository } from '@modules/services/repositories/IServiceRepository'
 
-import { Service } from '../schemas/Service'
+import { Service } from '../entities/Service'
 
 class ServiceRepository implements IServiceRepository {
-  private repository: MongoRepository<Service>
+  private repository: Repository<Service>
   constructor() {
-    this.repository = getMongoRepository(Service, 'mongo')
+    this.repository = getRepository(Service)
   }
 
-  async create({ name, description }: IServiceDTO): Promise<Service> {
+  async create({ name, description, price, available, duration, categoryId, userId }: IServiceDTO): Promise<Service> {
     const service = this.repository.create({
-      name, description
+      name, description, price, available, duration, categoryId, userId
     })
 
-    this.repository.save(service)
+    await this.repository.save(service)
 
     return service
   }
