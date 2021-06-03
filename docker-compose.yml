@@ -15,6 +15,7 @@ services:
       - databaseNebulosa
     depends_on:
       - databaseNebulosa
+      - mongoNebulosa
 
   databaseNebulosa:
     image: postgres
@@ -31,8 +32,20 @@ services:
     networks:
       - app-network
 
+  mongoNebulosa:
+    image: mongo:latest
+    container_name: mongoNebulosa
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/mongo
+    networks:
+      - app-network
+
 volumes:
   pgdata:
+    driver: local
+  mongodata:
     driver: local
 
 networks:
