@@ -16,14 +16,6 @@ export default async () => {
       cli: {
         migrationsDir: './src/shared/infra/typeorm/migrations'
       }
-    },
-    {
-      name: 'mongo',
-      type: 'mongodb',
-      host: 'localhost',
-      port: 27017,
-      database: 'nebulosa',
-      entities: ['./src/modules/**/schemas/*.ts']
     }
   ])
 }
