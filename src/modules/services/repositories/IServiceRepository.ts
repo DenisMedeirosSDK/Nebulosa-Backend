@@ -12,6 +12,7 @@ interface IServiceDTO {
 
 interface IServiceRepository {
   create({ name, description, price, available, duration, categoryId, userId }: IServiceDTO): Promise<Service>
+  findById(serviceId:string):Promise<Service>
 }
 
 export { IServiceRepository, IServiceDTO }

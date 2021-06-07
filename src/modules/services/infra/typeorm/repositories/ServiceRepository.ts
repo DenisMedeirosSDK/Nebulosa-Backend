@@ -10,6 +10,12 @@ class ServiceRepository implements IServiceRepository {
     this.repository = getRepository(Service)
   }
 
+  async findById(serviceId: string): Promise<Service> {
+    const service = this.repository.findOne(serviceId)
+
+    return service
+  }
+
   async create({ name, description, price, available, duration, categoryId, userId }: IServiceDTO): Promise<Service> {
     const service = this.repository.create({
       name, description, price, available, duration, categoryId, userId
