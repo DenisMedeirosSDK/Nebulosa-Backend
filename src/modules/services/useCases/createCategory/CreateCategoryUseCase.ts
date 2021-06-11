@@ -14,11 +14,13 @@ class CreateCategoryUseCase {
   async execute({ name, description }: ICreateCategoryDTO): Promise<Category> {
     const checkCategoryAlreadyExists = await this.categoryRepository.findByName(name)
 
+    const nameUpperCase = name.toUpperCase()
+
     if (checkCategoryAlreadyExists) {
       throw new AppError('Category already exists')
     }
     const category = this.categoryRepository.create({
-      name, description
+      name: nameUpperCase, description
     })
 
     return category
