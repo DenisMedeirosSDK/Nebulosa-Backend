@@ -8,8 +8,7 @@ export class CreateAppointment1622835576647 implements MigrationInterface {
         {
           name: 'id',
           type: 'uuid',
-          isPrimary: true,
-          generationStrategy: 'uuid'
+          isPrimary: true
         },
         {
           name: 'date',

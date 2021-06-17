@@ -8,8 +8,7 @@ export class CreateServices1622741128518 implements MigrationInterface {
         {
           name: 'id',
           type: 'uuid',
-          isPrimary: true,
-          generationStrategy: 'uuid'
+          isPrimary: true
         },
         {
           name: 'name',
@@ -33,7 +32,8 @@ export class CreateServices1622741128518 implements MigrationInterface {
         },
         {
           name: 'categoryId',
-          type: 'uuid'
+          type: 'uuid',
+          isNullable: true
         },
         {
           name: 'userId',
