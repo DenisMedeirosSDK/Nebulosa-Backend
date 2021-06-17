@@ -15,6 +15,7 @@ interface IServiceRepository {
   findById(serviceId:string):Promise<Service>
   findAll():Promise<Service[]>
   findByCategory(categoryId?:string): Promise<Service[]>
+  listMyServices(userId:string):Promise<Service[]>
 }
 
 export { IServiceRepository, IServiceDTO }
