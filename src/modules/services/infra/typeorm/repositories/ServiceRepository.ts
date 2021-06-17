@@ -10,6 +10,14 @@ class ServiceRepository implements IServiceRepository {
     this.repository = getRepository(Service)
   }
 
+  async findByCategory(categoryId?: string): Promise<Service[]> {
+    const services = this.repository.find({
+      where: { categoryId }
+    })
+
+    return services
+  }
+
   async findAll(): Promise<Service[]> {
     const services = this.repository.find()
 
