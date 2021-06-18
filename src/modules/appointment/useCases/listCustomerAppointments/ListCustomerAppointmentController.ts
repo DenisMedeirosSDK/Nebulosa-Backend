@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-import { ListClientAppointmentUseCase } from './ListClientAppointmentUseCase'
+import { ListCustomerAppointmentUseCase } from './ListCustomerAppointmentUseCase'
 
-class ListClientAppointmentController {
+class ListCustomerAppointmentController {
   async handle(request: Request, response: Response): Promise<Response> {
     const userId = request.user.id
 
-    const listAppointmentUseCase = container.resolve(ListClientAppointmentUseCase)
+    const listAppointmentUseCase = container.resolve(ListCustomerAppointmentUseCase)
 
     const appointments = await listAppointmentUseCase.execute(userId)
 
@@ -15,4 +15,4 @@ class ListClientAppointmentController {
   }
 }
 
-export { ListClientAppointmentController }
+export { ListCustomerAppointmentController }

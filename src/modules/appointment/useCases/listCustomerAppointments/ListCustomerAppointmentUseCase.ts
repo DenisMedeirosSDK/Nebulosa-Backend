@@ -4,7 +4,7 @@ import { Appointment } from '@modules/appointment/infra/typeorm/entities/Appoint
 import { IAppointmentRepository } from '@modules/appointment/repositories/IAppointmentRepository'
 
 @injectable()
-class ListClientAppointmentUseCase {
+class ListCustomerAppointmentUseCase {
   constructor(
     @inject('AppointmentRepository')
     private appointmentRepository:IAppointmentRepository
@@ -17,4 +17,4 @@ class ListClientAppointmentUseCase {
   }
 }
 
-export { ListClientAppointmentUseCase }
+export { ListCustomerAppointmentUseCase }
