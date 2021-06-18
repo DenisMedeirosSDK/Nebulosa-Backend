@@ -11,6 +11,21 @@ class AppointmentRepository implements IAppointmentRepository {
     this.repository = getRepository(Appointment)
   }
 
+  async findById(appointmentId: string): Promise<Appointment> {
+    const appointment = this.repository.findOne(appointmentId)
+
+    return appointment
+  }
+
+  async findClientAppointments(userId: string): Promise<Appointment[]> {
+    const appointments = this.repository.find({
+      where: { userId },
+      relations: ['service']
+    })
+
+    return appointments
+  }
+
   async create({ serviceId, userId, date }: ICreateAppointmentDTO): Promise<Appointment> {
     const appointment = this.repository.create({ serviceId, userId, date })
 
@@ -19,4 +34,5 @@ class AppointmentRepository implements IAppointmentRepository {
     return appointment
   }
 }
+
 export { AppointmentRepository }
