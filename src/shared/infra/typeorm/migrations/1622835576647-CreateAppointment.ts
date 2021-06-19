@@ -51,10 +51,18 @@ export class CreateAppointment1622835576647 implements MigrationInterface {
           onUpdate: 'SET NULL'
         },
         {
-          name: 'FKServiceUser',
+          name: 'FKServiceUserCustomer',
           referencedTableName: 'users',
           referencedColumnNames: ['id'],
-          columnNames: ['customerId', 'providerId'],
+          columnNames: ['customerId'],
+          onDelete: 'SET NULL',
+          onUpdate: 'SET NULL'
+        },
+        {
+          name: 'FKServiceUserProvider',
+          referencedTableName: 'users',
+          referencedColumnNames: ['id'],
+          columnNames: ['providerId'],
           onDelete: 'SET NULL',
           onUpdate: 'SET NULL'
         }
