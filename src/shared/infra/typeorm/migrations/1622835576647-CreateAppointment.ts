@@ -19,8 +19,16 @@ export class CreateAppointment1622835576647 implements MigrationInterface {
           type: 'uuid'
         },
         {
-          name: 'userId',
+          name: 'customerId',
           type: 'uuid'
+        },
+        {
+          name: 'providerId',
+          type: 'uuid'
+        },
+        {
+          name: 'status',
+          type: 'varchar'
         },
         {
           name: 'createdAt',
@@ -46,7 +54,7 @@ export class CreateAppointment1622835576647 implements MigrationInterface {
           name: 'FKServiceUser',
           referencedTableName: 'users',
           referencedColumnNames: ['id'],
-          columnNames: ['userId'],
+          columnNames: ['customerId', 'providerId'],
           onDelete: 'SET NULL',
           onUpdate: 'SET NULL'
         }

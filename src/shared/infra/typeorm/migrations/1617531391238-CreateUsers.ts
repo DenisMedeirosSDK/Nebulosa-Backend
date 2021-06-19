@@ -20,11 +20,6 @@ export class CreateUsers1617531391238 implements MigrationInterface {
           isNullable: true
         },
         {
-          name: 'phone',
-          type: 'varchar',
-          isNullable: true
-        },
-        {
           name: 'email',
           type: 'varchar',
           isUnique: true
@@ -34,9 +29,9 @@ export class CreateUsers1617531391238 implements MigrationInterface {
           type: 'varchar'
         },
         {
-          name: 'isProvider',
+          name: 'role',
           type: 'varchar',
-          default: false
+          isNullable: true
         },
         {
           name: 'createdAt',
