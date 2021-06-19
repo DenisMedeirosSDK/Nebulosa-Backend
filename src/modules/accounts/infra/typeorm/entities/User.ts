@@ -14,16 +14,13 @@ class User {
   avatar?: string
 
   @Column()
-  phone?: string
-
-  @Column()
   email: string
 
   @Column()
   password: string
 
   @Column()
-  isProvider: boolean
+  role: string
 
   @CreateDateColumn()
   createdAt: Date

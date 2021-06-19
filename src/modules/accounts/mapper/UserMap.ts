@@ -9,7 +9,7 @@ class UserMap {
     name,
     email,
     avatar,
-    phone,
+    role,
     avatarURL
   }: User): IUserResponseDTO {
     const user = classToClass({
@@ -17,7 +17,7 @@ class UserMap {
       name,
       email,
       avatar,
-      phone,
+      role,
       avatarURL
     })
 

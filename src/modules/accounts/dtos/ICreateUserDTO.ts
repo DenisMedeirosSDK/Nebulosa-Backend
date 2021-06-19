@@ -2,7 +2,7 @@ interface ICreateUserDTO {
   id?: string
   name: string
   avatar?: string
-  phone?: string
+  role?: string
   email: string
   password: string
 }

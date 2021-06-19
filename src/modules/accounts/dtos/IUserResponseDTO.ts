@@ -3,7 +3,7 @@ interface IUserResponseDTO {
   name: string
   email: string
   avatar: string
-  phone: string
+  role: string
   avatarURL(): string
 }
 export { IUserResponseDTO }
