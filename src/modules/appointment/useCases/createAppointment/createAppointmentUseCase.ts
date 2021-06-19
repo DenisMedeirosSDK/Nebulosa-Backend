@@ -16,7 +16,7 @@ class CreateAppointmentUseCase {
     private serviceRepository: IServiceRepository
   ) {}
 
-  async execute({ date, serviceId, userId }:ICreateAppointmentDTO): Promise<Appointment> {
+  async execute({ date, serviceId, customerId }:ICreateAppointmentDTO): Promise<Appointment> {
     const service = await this.serviceRepository.findById(serviceId)
 
     async function IsBefore(inicialDate:Date, finalDate:Date) {
@@ -38,13 +38,16 @@ class CreateAppointmentUseCase {
       throw new AppError('You cannot schedule a new service more than 7 days ahead')
     }
 
-    if (userId === service.userId) {
+    if (customerId === service.userId) {
       throw new AppError("You can't create an appointment with yourself.")
     }
 
-    const appointment = this.appointmentRepository.create({ date, serviceId, userId })
+    const provider = service.userId
+
+    const appointment = this.appointmentRepository.create({ date, serviceId, customerId, providerId: provider, status: 'pending' })
 
     return appointment
   }
 }
+
 export { CreateAppointmentUseCase }

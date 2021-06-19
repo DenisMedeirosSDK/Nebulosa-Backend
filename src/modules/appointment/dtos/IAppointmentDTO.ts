@@ -1,7 +1,9 @@
 interface ICreateAppointmentDTO{
   date:Date
   serviceId:string
-  userId:string
+  customerId:string
+  providerId?:string
+  status?:string
 }
 
 export { ICreateAppointmentDTO }

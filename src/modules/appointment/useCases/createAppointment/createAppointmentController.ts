@@ -11,7 +11,7 @@ class CreateAppointmentController {
     const createAppointmentUseCase = container.resolve(CreateAppointmentUseCase)
 
     const appointment = await createAppointmentUseCase.execute({
-      date, serviceId, userId
+      date, serviceId, customerId: userId
     })
 
     return response.json(appointment)

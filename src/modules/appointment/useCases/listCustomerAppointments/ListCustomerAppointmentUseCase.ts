@@ -10,8 +10,8 @@ class ListCustomerAppointmentUseCase {
     private appointmentRepository:IAppointmentRepository
   ) {}
 
-  async execute(userId:string): Promise<Appointment[]> {
-    const appointments = await this.appointmentRepository.findClientAppointments(userId)
+  async execute(customerId:string): Promise<Appointment[]> {
+    const appointments = await this.appointmentRepository.findClientAppointments(customerId)
 
     return appointments
   }

@@ -20,7 +20,13 @@ class Appointment {
   serviceId:string
 
   @Column()
-  userId:string
+  customerId:string
+
+  @Column()
+  providerId:string
+
+  @Column()
+  status:string
 
   @CreateDateColumn()
   createdAt:Date
