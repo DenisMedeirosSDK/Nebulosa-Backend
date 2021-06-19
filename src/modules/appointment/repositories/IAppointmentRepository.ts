@@ -5,6 +5,7 @@ interface IAppointmentRepository {
   create({ serviceId, customerId, providerId, date, status }:ICreateAppointmentDTO):Promise<Appointment>
   findById(appointmentId:string):Promise<Appointment>
   findClientAppointments(userId:string):Promise<Appointment[]>
+  findProviderAppointments(providerId:string):Promise<Appointment[]>
 }
 
 export { IAppointmentRepository }
