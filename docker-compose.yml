@@ -1,22 +1,6 @@
-version: "3.7"
+version: '3.7'
 
 services:
-  app:
-    build: .
-    container_name: Nebulosa
-    ports:
-      - 3333:3333
-      - 9229:9229
-    volumes:
-      - .:/usr/app
-    networks:
-      - app-network
-    links:
-      - databaseNebulosa
-    depends_on:
-      - databaseNebulosa
-      - mongoNebulosa
-
   databaseNebulosa:
     image: postgres
     container_name: databaseNebulosa
@@ -29,25 +13,20 @@ services:
       - POSTGRES_DB=nebulosa
     volumes:
       - pgdata:/data/postgres
-    networks:
-      - app-network
 
-  mongoNebulosa:
-    image: mongo:latest
-    container_name: mongoNebulosa
+  app:
+    build: .
+    container_name: Nebulosa
     ports:
-      - 27017:27017
+      - 3333:3333
+      - 9229:9229
     volumes:
-      - mongodata:/data/mongo
-    networks:
-      - app-network
+      - .:/usr/app
+    links:
+      - databaseNebulosa
+    depends_on:
+      - databaseNebulosa
 
 volumes:
   pgdata:
     driver: local
-  mongodata:
-    driver: local
-
-networks:
-  app-network:
-    driver: bridge

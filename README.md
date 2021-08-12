@@ -49,21 +49,21 @@ Para iniciar a aplicação:
 
 Crie a imagem da aplicação
 
-`docker build -t <nome da imagem> .`
+`docker build -t nebulosa-backend-app .`
 
 Execute o docker compose da aplicação
 
 `docker compose up -d`
 
-// Para verificar se esta executando
+Para verificar se esta executando
 
-`docker logs <nome da imagem> -f`
+`docker logs Nebulosa -f`
 
-// A seguinte mensagem aparecera: **Server start on port, 3333**
+A seguinte mensagem aparecera: **Server start on APP_PORT**
 
 Execute as migrations para poder inserir dados no banco
 
-Para executar as migrations
+Para executar as migrations execute em seu terminal
 
 `npm run typeorm migration:run`
 
