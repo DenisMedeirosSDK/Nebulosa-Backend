@@ -25,7 +25,11 @@
 git clone https://github.com/DenisMedeirosSDK/Nebulosa-Backend.git
 
 cd Nebulosa-Backend
+
 ```
+
+Remova _.example_ do arquivo `ormconfig.example.json` , deixando assim
+`ormconfig.json` , caso necessário modifique as informações para seu ambiente.
 
 ---
 
