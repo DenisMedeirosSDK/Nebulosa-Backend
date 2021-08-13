@@ -13,9 +13,9 @@
 
 ## Requisitos para executar
 
-- NodeJs - versão v12.x - Necessário porta 3333 aberta
+- [NodeJs](https://nodejs.org/en/) - versão v12.x - Necessário porta 3333 aberta
 - NPM - versão v6.14.10
-- PostgreSQL - versão v13.2 - Necessário usar porta 5432
+- [PostgreSQL](https://www.postgresql.org/download/) - versão v13.2 - Necessário usar porta 5432
 
 ---
 
@@ -30,6 +30,7 @@ cd Nebulosa-Backend
 
 Remova _.example_ do arquivo `ormconfig.example.json` , deixando assim
 `ormconfig.json` , caso necessário modifique as informações para seu ambiente.
+Faça o mesmo com o arquivo `.env.example`
 
 ---
 
