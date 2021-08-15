@@ -58,7 +58,7 @@ Crie a imagem da aplicação
 
 Execute o docker compose da aplicação
 
-`docker compose up -d`
+`docker-compose up -d`
 
 Para verificar se esta executando
 
@@ -78,7 +78,7 @@ Para executar as migrations execute em seu terminal
 
 Para acessar a documentação de rotas, basta acessar `http://localhost:3333/api-docs`
 
-Também é possível fazer as requisições através do arquivo `insomnia-nebulosa.json` em .docs para o
+Também é possível fazer as requisições através do arquivo `insomnia-nebulosa.json` em **docs** para o
 [insomnia](https://insomnia.rest/).
 
 Copie o conteúdo do arquivo depois dentro do insomnia terá uma opção **CREATE** clique em _Clipboard_
