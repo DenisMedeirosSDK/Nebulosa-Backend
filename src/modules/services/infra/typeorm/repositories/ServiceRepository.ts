@@ -1,6 +1,9 @@
 import { getRepository, Repository } from 'typeorm'
 
-import { IServiceDTO, IServiceRepository } from '@modules/services/repositories/IServiceRepository'
+import {
+  IServiceDTO,
+  IServiceRepository
+} from '@modules/services/repositories/IServiceRepository'
 
 import { Service } from '../entities/Service'
 
@@ -20,7 +23,8 @@ class ServiceRepository implements IServiceRepository {
 
   async findByCategory(categoryId?: string): Promise<Service[]> {
     const services = this.repository.find({
-      where: { categoryId }
+      where: { categoryId },
+      relations: ['user']
     })
 
     return services
@@ -38,9 +42,23 @@ class ServiceRepository implements IServiceRepository {
     return service
   }
 
-  async create({ name, description, price, available, duration, categoryId, userId }: IServiceDTO): Promise<Service> {
+  async create({
+    name,
+    description,
+    price,
+    available,
+    duration,
+    categoryId,
+    userId
+  }: IServiceDTO): Promise<Service> {
     const service = this.repository.create({
-      name, description, price, available, duration, categoryId, userId
+      name,
+      description,
+      price,
+      available,
+      duration,
+      categoryId,
+      userId
     })
 
     await this.repository.save(service)
