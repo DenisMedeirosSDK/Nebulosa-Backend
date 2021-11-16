@@ -1,3 +1,13 @@
 node_modules
 dist
 *.sqlite
+
+tmp/*
+!tmp/.gitkeep
+
+coverage/
+
+.env*
+!.env.example
+
+ormconfig.json

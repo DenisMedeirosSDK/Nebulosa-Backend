@@ -1,41 +1,95 @@
-# Nebulosa-Backend
+# NEBULOSA - Backend
 
-### Instalar projeto
+## Ferramentas usadas
+
+- Typescript
+- Typeorm
+- PostgreSQL
+- Node JS
+- Docker
+- Swagger
+
+---
+
+## Requisitos para executar
+
+- [NodeJs](https://nodejs.org/en/) - versão v12.x - Necessário porta 3333 aberta
+- NPM - versão v6.14.10
+- [PostgreSQL](https://www.postgresql.org/download/) - versão v13.2 - Necessário usar porta 5432
+
+---
+
+## Como executar
 
 ```bash
-$ yarn install
+git clone https://github.com/DenisMedeirosSDK/Nebulosa-Backend.git
+
+cd Nebulosa-Backend
+
 ```
 
-### Rodando o projeto
+Remova _.example_ do arquivo `ormconfig.example.json` , deixando assim
+`ormconfig.json` , caso necessário modifique as informações para seu ambiente.
+Faça o mesmo com o arquivo `.env.example`
 
-```
-## Ambiente de desenvolvimento
+---
 
-# create migrations
-yarn knex:migrate
+## Ambiente local
 
-# development
-yarn dev
+Instale as dependências:
 
-## Ambiente de produção
+`npm install`
 
-# build
-yarn build
+Para executar as migrations:
 
-# create migrations
-yarn knex:migrate
+`npm run typeorm migration:run`
 
-# production mode
-yarn start
+Para iniciar a aplicação:
 
+`npm run dev`
 
-### Migrations rollback
-yarn knex:migrate:rollback
-```
+---
+
+## Docker
+
+Crie a imagem da aplicação
+
+`docker build -t nebulosa-backend-app .`
+
+Execute o docker compose da aplicação
+
+`docker-compose up -d`
+
+Para verificar se esta executando
+
+`docker logs Nebulosa -f`
+
+A seguinte mensagem aparecera: **Server start on APP_PORT**
+
+Execute as migrations para poder inserir dados no banco
+
+Para executar as migrations execute em seu terminal
+
+`npm run typeorm migration:run`
+
+---
+
+## Documentação de rotas
+
+Para acessar a documentação de rotas, basta acessar `http://localhost:3333/api-docs`
+
+Também é possível fazer as requisições através do arquivo `insomnia-nebulosa.json` em **docs** para o
+[insomnia](https://insomnia.rest/).
+
+Copie o conteúdo do arquivo depois dentro do insomnia terá uma opção **CREATE** clique em _Clipboard_
+
+---
 
 ## Ajuda a nebulosa entrar em produção
 
-- PIX - ``contato.denismedeiros@hotmail.com``
+- PIX - `contato.denismedeiros@hotmail.com`
+
+---
 
 ## Licença
 
