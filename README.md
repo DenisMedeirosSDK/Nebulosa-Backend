@@ -32,11 +32,6 @@ yarn start
 ### Migrations rollback
 yarn knex:migrate:rollback
 ```
-
-## Ajuda a nebulosa entrar em produção
-
-- PIX - ``contato.denismedeiros@hotmail.com``
-
 ## Licença
 
 Nebulosa uma a licença [BSD 3](LICENSE)
