@@ -85,12 +85,6 @@ Copie o conteúdo do arquivo depois dentro do insomnia terá uma opção **CREAT
 
 ---
 
-## Ajuda a nebulosa entrar em produção
-
-- PIX - `contato.denismedeiros@hotmail.com`
-
----
-
 ## Licença
 
 Nebulosa uma a licença [BSD 3](LICENSE)
