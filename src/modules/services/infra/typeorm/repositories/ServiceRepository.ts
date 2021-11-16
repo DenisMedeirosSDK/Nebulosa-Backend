@@ -15,7 +15,8 @@ class ServiceRepository implements IServiceRepository {
 
   async listMyServices(userId: string): Promise<Service[]> {
     const services = this.repository.find({
-      where: { userId }
+      where: { userId },
+      relations: ['category']
     })
 
     return services

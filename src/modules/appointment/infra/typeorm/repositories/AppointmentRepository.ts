@@ -29,14 +29,26 @@ class AppointmentRepository implements IAppointmentRepository {
   async findClientAppointments(customerId: string): Promise<Appointment[]> {
     const appointments = this.repository.find({
       where: { customerId },
-      relations: ['service']
+      relations: ['service', 'provider']
     })
 
     return appointments
   }
 
-  async create({ serviceId, customerId, providerId, date, status }: ICreateAppointmentDTO): Promise<Appointment> {
-    const appointment = this.repository.create({ serviceId, customerId, providerId, date, status })
+  async create({
+    serviceId,
+    customerId,
+    providerId,
+    date,
+    status
+  }: ICreateAppointmentDTO): Promise<Appointment> {
+    const appointment = this.repository.create({
+      serviceId,
+      customerId,
+      providerId,
+      date,
+      status
+    })
 
     await this.repository.save(appointment)
 

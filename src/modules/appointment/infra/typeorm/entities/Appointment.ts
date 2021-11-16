@@ -1,38 +1,50 @@
-
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn
+} from 'typeorm'
 import { v4 as uuidV4 } from 'uuid'
 
+import { User } from '@modules/accounts/infra/typeorm/entities/User'
 import { Service } from '@modules/services/infra/typeorm/entities/Service'
 
 @Entity('appointments')
 class Appointment {
   @PrimaryColumn()
-  id?:string
+  id?: string
 
   @Column()
-  date:Date
+  date: Date
 
   @ManyToOne(() => Service)
   @JoinColumn({ name: 'serviceId' })
-  service:Service
+  service: Service
 
   @Column()
-  serviceId:string
+  serviceId: string
 
   @Column()
-  customerId:string
+  customerId: string
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'providerId' })
+  provider: User
 
   @Column()
-  providerId:string
+  providerId: string
 
   @Column()
-  status:string
+  status: string
 
   @CreateDateColumn()
-  createdAt:Date
+  createdAt: Date
 
   @UpdateDateColumn()
-  updatedAt:Date
+  updatedAt: Date
 
   constructor() {
     if (!this.id) {
