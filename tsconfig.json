@@ -6,21 +6,11 @@
     "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ],
-      "@errors/*": [
-        "errors/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ]
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -29,12 +19,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".docker"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".docker"]
 }
