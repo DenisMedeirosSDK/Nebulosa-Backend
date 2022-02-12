@@ -11,6 +11,14 @@ class AppointmentRepository implements IAppointmentRepository {
     this.repository = getRepository(Appointment)
   }
 
+  async findByDate(date: Date, providerId: string): Promise<Appointment> {
+    const appointment = await this.repository.findOne({
+      where: { date, providerId }
+    })
+
+    return appointment
+  }
+
   async findProviderAppointments(providerId: string): Promise<Appointment[]> {
     const appointments = this.repository.find({
       where: { providerId },

@@ -2,7 +2,7 @@ import { container } from 'tsyringe'
 
 import '@shared/container/providers'
 
-import { UserRepository } from '@modules/accounts/infra/typeorm/repositories/UserRepository'
+import { UserMongoRepository } from '@modules/accounts/infra/mongoose/repositories/UserMongoRepository'
 import { UserTokenRepository } from '@modules/accounts/infra/typeorm/repositories/UserTokenRepository'
 import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
 import { IUserTokenRepository } from '@modules/accounts/repositories/IUserTokenRepository'
@@ -15,7 +15,7 @@ import { IServiceRepository } from '@modules/services/repositories/IServiceRepos
 
 container.registerSingleton<IUserRepository>(
   'UserRepository',
-  UserRepository
+  UserMongoRepository
 )
 
 container.registerSingleton<ICategoryRepository>(

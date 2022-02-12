@@ -11,15 +11,19 @@ import { AppError } from '@shared/errors/AppError'
 class CreateAppointmentUseCase {
   constructor(
     @inject('AppointmentRepository')
-    private appointmentRepository:IAppointmentRepository,
+    private appointmentRepository: IAppointmentRepository,
     @inject('ServiceRepository')
     private serviceRepository: IServiceRepository
   ) {}
 
-  async execute({ date, serviceId, customerId }:ICreateAppointmentDTO): Promise<Appointment> {
+  async execute({
+    date,
+    serviceId,
+    customerId
+  }: ICreateAppointmentDTO): Promise<Appointment> {
     const service = await this.serviceRepository.findById(serviceId)
 
-    async function IsBefore(inicialDate:Date, finalDate:Date) {
+    async function IsBefore(inicialDate: Date, finalDate: Date) {
       return dayjs(inicialDate).isBefore(finalDate)
     }
 
@@ -30,21 +34,38 @@ class CreateAppointmentUseCase {
 
     const limitSchedule = dayjs().add(7, 'day').toDate()
 
-    async function IsAfter(higherDate:Date, lowerDate:Date) {
+    async function IsAfter(higherDate: Date, lowerDate: Date) {
       return dayjs(higherDate).isAfter(lowerDate)
     }
 
     if (await IsAfter(date, limitSchedule)) {
-      throw new AppError('You cannot schedule a new service more than 7 days ahead')
+      throw new AppError(
+        'You cannot schedule a new service more than 7 days ahead'
+      )
     }
 
     if (customerId === service.userId) {
       throw new AppError("You can't create an appointment with yourself.")
     }
 
+    const bookedAppointment = await this.appointmentRepository.findByDate(
+      date,
+      service.userId
+    )
+
+    if (bookedAppointment.date) {
+      throw new AppError('Appointment already booked')
+    }
+
     const provider = service.userId
 
-    const appointment = this.appointmentRepository.create({ date, serviceId, customerId, providerId: provider, status: 'pending' })
+    const appointment = this.appointmentRepository.create({
+      date,
+      serviceId,
+      customerId,
+      providerId: provider,
+      status: 'pending'
+    })
 
     return appointment
   }

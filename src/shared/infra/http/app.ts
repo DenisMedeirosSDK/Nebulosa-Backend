@@ -10,6 +10,7 @@ import upload from '@config/upload'
 import '@shared/container'
 import { AppError } from '@shared/errors/AppError'
 import '@shared/infra/typeorm'
+import '@shared/infra/mongoose'
 
 import routes from './routes'
 import swaggerDocument from './swagger.json'

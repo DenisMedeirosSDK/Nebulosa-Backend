@@ -6,7 +6,7 @@ interface IOptions {
 
 getConnectionOptions().then((options) => {
   const newOptions = options as IOptions
-  newOptions.host = 'databaseNebulosa'
+  newOptions.host = 'localhost'
   createConnection({
     ...options
   })
